@@ -71,7 +71,7 @@ export default function ChatWidget({ session }) {
       } else {
         const updatedData = { ...appointmentData, [stepKey]: input };
         try {
-          await fetch("http://localhost:5001/api/appointments", {
+          await fetch("https://chatbot-backend-26qm.onrender.com/api/appointments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ sessionId: anonymousId, ...updatedData }),
@@ -92,7 +92,7 @@ export default function ChatWidget({ session }) {
 
     try {
 
-      const res = await fetch("http://localhost:5001/api/chat", {
+      const res = await fetch("https://chatbot-backend-26qm.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
