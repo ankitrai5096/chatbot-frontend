@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import "./chatWidget.css";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 function getAnonymousId() {
   let id = localStorage.getItem("vet_chat_anonymous_id");
   if (!id) {
@@ -71,7 +73,7 @@ export default function ChatWidget({ session }) {
       } else {
         const updatedData = { ...appointmentData, [stepKey]: input };
         try {
-          await fetch("https://chatbot-backend-26qm.onrender.com/api/appointments", {
+          await fetch(`${BACKEND_URL}/api/appointments`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ sessionId: anonymousId, ...updatedData }),
@@ -92,7 +94,7 @@ export default function ChatWidget({ session }) {
 
     try {
 
-      const res = await fetch("https://chatbot-backend-26qm.onrender.com/api/chat", {
+      const res = await fetch(`${BACKEND_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
